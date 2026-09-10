@@ -203,5 +203,11 @@ for result in results:
     print("Decision:", result["decision"])
 
 profits = [result["profit"] for result in results]
+for result in results:
+     if result["profit"] == best_profit:
+      best_product = result["name"]
+    
 print("Max Profit:", max(profits))
 print("Min Profit:", min(profits))
+print("best profit" , best_profit)
+print("Best Product:", best_product)
