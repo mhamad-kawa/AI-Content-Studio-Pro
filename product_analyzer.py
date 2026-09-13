@@ -49,14 +49,14 @@ def analyze_product(product):
    
 
     if profit_margin>= 30 :
-            Status= "good"
+            status = "good"
     
     elif profit_margin >= 15 :
-            Status= "mediam"
+            status = "medium"
     else:
             Status= "bad"
 
-    print("Status:", Status) 
+    print("status", status) 
 
     return {
               "name" : product["name"],
@@ -65,7 +65,7 @@ def analyze_product(product):
               "total_cost" : total_cost ,
               "profit" : revenue - total_cost ,
               "profit_margin" : profit / revenue * 100 ,
-              "status" : Status
+              "status" : status
               
         }     
      
@@ -75,139 +75,81 @@ for product in products:
     result = analyze_product(product)
     results.append(result)
 
-for result in results:
-    print("Product:", result["name"])
-    print("Profit:", result["profit"])
-    print("Margin:", result["profit_margin"], "%")
-    print("Status:", result["status"])
-    print()
+
+def calculat_total_profit(results):
+     total_profit = 0
+
+     for result in results:
+          total_profit = total_profit + result["profit"]
+     return total_profit
 
 
+def calculate_best_profit_and_product(results):
+     best_profit = 0
+     best_product = ""
 
-total_profit = 0
-
-for result in results:
-    total_profit = total_profit + result["profit"]
-
-print("total_profit" , total_profit)      
-
-
-best_profit = 0
-best_product = ""
-
-for result in results:
-    if result["profit"] > best_profit:
-          best_profit = result["profit"]
-          best_product = result["name"]
-print("Best Product:", best_product)
-print("Best profit" , best_profit)          
-
-    
-worst_profit = 100000
-worst_product = ""
-
-for result in results:
-      if result["profit"] < worst_profit:
-            worst_profit = result["profit"]
-            worst_product= result["name"]
-
-print("worst profit" , worst_profit)
-print("worst product" , worst_product)  
-
-for result in results:
-      
-      
-      
-      if result["profit_margin"] >= 40 :
-            decision = "scale"
-      elif result["profit_margin"] >= 30 :
-            decision = "keep"       
-      else:
-             decision = "review"
-      result["decision"] = decision  
-      print(result)
+     for result in results:
+          if result["profit"] > best_profit:
+           best_profit = result["profit"]
+           best_product = result["name"]
+     return best_profit , best_product
 
 
-for result in results:
-      print("=======================")
-      print("proudect" , result["name"])
-      print("profit" , result["profit"])
-      print("margin" , result["profit_margin" ], "%")
-      print("status" , result["status"])
-      print("decision" , result["decision"])
+def calculate_worst_profit_and_product(results):
+     worst_profit = 10000
+     worst_product = ""
+
+     for result in results:
+          if result["profit"] < worst_profit:
+               worst_profit = result["profit"]
+               worst_product = result["name"]
+     return worst_product , worst_profit
+
+def create_product():
+     name = input("product_name:")
+     purchase_price = int (input("purchase price:"))
+     quantity = int (input("quantity:"))
+     shipping = int(input("shipping:"))
+     selling_price = int(input("selling price:"))
 
 
-name = input("product name : ")
-purchase_price = int(input("purchase price : "))
-while purchase_price <= 0:
-    print("Invalid purchase price. Try again.")
-    purchase_price = int(input("purchase price : "))
-quantity = int(input("quantity : "))
-while quantity <= 0:
-     print("Invalid quality. Try again.")
-     quantity = int(input("quality :"))
-shipping = int(input("shipping : "))
-while shipping < 0 :
-     print("invalid shipping. try again.")
-     shipping = int(input("shipping :"))
-selling_price = int(input("selling price : "))
-while selling_price <= 0 :
-     print("invalid selling price. try again.")
-     selling_price = int(input("selling price :"))
-
-product = {
-      "name" : name,
-      "purchase_price" : purchase_price,
-      "quantity" : quantity,
-      "shipping" : shipping , 
-      "selling_price" : selling_price 
+     product = {
+     "name" : name,
+     "purchase_price" : purchase_price,
+     "quantity" : quantity ,
+     "shipping" : shipping ,
+     "selling_price" : selling_price     
 }
-result = analyze_product(product)
-results.append(result)
-total_profit = 0
-
-for result in results:
-    total_profit = total_profit + result["profit"]
-
-print("total_profit", total_profit)
+     return product
+new_product = create_product()
+products.append(new_product)
 
 
-best_profit = 0
-best_product = ""
+new_result = analyze_product(new_product)
+results.append(new_result)
 
-for result in results:
-    if result["profit"] > best_profit:
-        best_profit = result["profit"]
-        best_product = result["name"]
+def final_report(results):
+    total_profit = calculat_total_profit(results)
+    print("Total Profit:", total_profit)
+    best_profit, best_product = calculate_best_profit_and_product(results)
+    print("Best Product:", best_product)
+    print("Best Profit:", best_profit)
+    worst_product, worst_profit = calculate_worst_profit_and_product(results)
 
-print("Best Product:", best_product)
-print("Best profit", best_profit)
+    print("Worst Product:", worst_product)
+    print("Worst Profit:", worst_profit)
 
-for result in results:
-    if result["profit_margin"] >= 40:
-        decision = "scale"
-    elif result["profit_margin"] >= 30:
-        decision = "keep"
-    else:
-        decision = "review"
+    print("\nProduct Decisions:")
 
-    result["decision"] = decision
+    for result in results:
+        if result["profit_margin"] >= 40:
+            decision = "Scale"
+        elif result["profit_margin"] >= 30:
+            decision = "Keep"
+        else:
+            decision = "Review"
+
+        print(result["name"], "→", decision)
 
 
-for result in results:
-    print("=======================")
-    print("Product:", result["name"])
-    print("Profit:", result["profit"])
-    print("Margin:", result["profit_margin"], "%")
-    print("Status:", result["status"])
-    print("Decision:", result["decision"])
-
-profits = [result["profit"] for result in results]
-for result in results:
-     if result["profit"] == best_profit:
-      best_product = result["name"]
-    
-print("Max Profit:", max(profits))
-print("Min Profit:", min(profits))
-print("best profit" , best_profit)
-print("Best Product:", best_product)
+final_report(results) 
