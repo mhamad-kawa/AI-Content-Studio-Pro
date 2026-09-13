@@ -54,7 +54,7 @@ def analyze_product(product):
     elif profit_margin >= 15 :
             status = "medium"
     else:
-            Status= "bad"
+            status= "bad"
 
     print("status", status) 
 
@@ -106,11 +106,31 @@ def calculate_worst_profit_and_product(results):
      return worst_product , worst_profit
 
 def create_product():
-     name = input("product_name:")
-     purchase_price = int (input("purchase price:"))
+     name = input("product_name:") 
+     while True:
+      try:
+        purchase_price = int(input("purchase price:"))
+
+        if purchase_price <= 0:
+            print("Invalid purchase price!")
+            continue
+
+        break
+
+      except ValueError:
+        print("Please enter a number!")           
      quantity = int (input("quantity:"))
+     while quantity <= 0 :
+          print("invalid quantity")
+          quantity = int(input("quantity:"))
      shipping = int(input("shipping:"))
+     while shipping < 0 :
+          print("invalid shipping")
+          shipping = int(input("shipping: "))
      selling_price = int(input("selling price:"))
+     while selling_price <= 0 :
+          print("invalid selling price")
+          selling_price = int (input("selling price:"))
 
 
      product = {
