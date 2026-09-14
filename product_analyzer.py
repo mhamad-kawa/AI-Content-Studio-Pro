@@ -119,19 +119,46 @@ def create_product():
 
       except ValueError:
         print("Please enter a number!")           
-     quantity = int (input("quantity:"))
-     while quantity <= 0 :
-          print("invalid quantity")
-          quantity = int(input("quantity:"))
-     shipping = int(input("shipping:"))
-     while shipping < 0 :
-          print("invalid shipping")
-          shipping = int(input("shipping: "))
-     selling_price = int(input("selling price:"))
-     while selling_price <= 0 :
-          print("invalid selling price")
-          selling_price = int (input("selling price:"))
+    
 
+
+     while True:
+          try :
+               quantity = int(input("quantity :"))
+
+               if quantity <= 0 :
+                print("invalid quantity !")
+                continue
+               break
+          except ValueError:
+              print("please enter a number !")
+             
+    
+    
+     while True : 
+         try:
+             shipping = int(input("shipping :"))
+
+             if shipping < 0 :
+                 print("invalid shipping")
+                 continue
+             break
+         except ValueError:
+             print("please enter number")
+           
+     
+        
+     while True :
+         
+         try :
+             selling_price = int(input("selling price "))
+             if selling_price <= 0 :
+                 print("invalid selling price")
+                 continue
+             break
+         except ValueError :
+             print("plaes enter number ")
+            
 
      product = {
      "name" : name,
