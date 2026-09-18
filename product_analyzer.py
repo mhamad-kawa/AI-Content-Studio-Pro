@@ -29,6 +29,16 @@ product3 = {
 products = [product ,product2 , product3]
 
 
+
+def calculate_decision(profit_margin): 
+    if   profit_margin >= 40:
+        return "scale"
+    elif profit_margin >= 30:
+            return "keep"
+    else :
+            return "review"  
+
+
 def analyze_product(product):
 
     
@@ -43,6 +53,8 @@ def analyze_product(product):
     profit =  revenue - total_cost
 
     profit_margin = profit /  revenue * 100
+
+    decision  = calculate_decision(profit_margin)
    
 
     if profit_margin>= 30 :
@@ -54,6 +66,7 @@ def analyze_product(product):
             status= "bad"
 
     
+    
 
     return {
               "name" : product["name"],
@@ -62,7 +75,9 @@ def analyze_product(product):
               "total_cost" : total_cost ,
               "profit" : profit ,
               "profit_margin" : profit_margin ,
-              "status" : status
+              "status" : status,
+              "decision": decision
+              
               
         }     
      
@@ -72,6 +87,8 @@ for product in products:
     result = analyze_product(product)
     results.append(result)
 
+  
+   
 
 def calculat_total_profit(results):
      total_profit = 0
@@ -186,14 +203,5 @@ def final_report(results):
     print("\nProduct Decisions:")
 
     for result in results:
-        if result["profit_margin"] >= 40:
-            decision = "Scale"
-        elif result["profit_margin"] >= 30:
-            decision = "Keep"
-        else:
-            decision = "Review"
-
-        print(result["name"], "→", decision)
-
-
+      print(result["name"], "→", result["decision"])
 final_report(results) 
