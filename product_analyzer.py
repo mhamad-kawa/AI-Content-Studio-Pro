@@ -31,19 +31,16 @@ products = [product ,product2 , product3]
 
 def analyze_product(product):
 
-    print("Product:", product["name"])
+    
     
     product_cost = product["purchase_price"] * product ["quantity"]
-    print("Cost:", product_cost)
-
+    
     revenue = product ["selling_price"] * product ["quantity"]
-    print("Revenue:", revenue)
+    
 
     total_cost = product_cost + product["shipping"]
-    print("Total Cost:", total_cost)
-
+   
     profit =  revenue - total_cost
-    
 
     profit_margin = profit /  revenue * 100
    
@@ -56,15 +53,15 @@ def analyze_product(product):
     else:
             status= "bad"
 
-    print("status", status) 
+    
 
     return {
               "name" : product["name"],
               "cost" : product_cost ,
               "revenue" : revenue ,
               "total_cost" : total_cost ,
-              "profit" : revenue - total_cost ,
-              "profit_margin" : profit / revenue * 100 ,
+              "profit" : profit ,
+              "profit_margin" : profit_margin ,
               "status" : status
               
         }     
