@@ -1,6 +1,7 @@
 
 
 product = {
+    "id": 1,
     "name": "smart_watch",
     "purchase_price" : 20 ,
     "quantity" : 50 ,
@@ -9,6 +10,7 @@ product = {
 }
 
 product2 = {
+    "id": 2,
     "name":"Bluetooth Speaker",
     "purchase_price":15 ,
     "quantity": 30 ,
@@ -19,6 +21,7 @@ product2 = {
 
 
 product3 = {
+    "id": 3,
     "name": "USB-C Cable",
     "purchase_price": 3,
     "quantity": 100,
@@ -27,6 +30,22 @@ product3 = {
 }
 
 products = [product ,product2 , product3]
+
+def find_product(product_id):
+    for product in products:
+        if product["id"] == product_id:
+            return product
+result = find_product(2)
+if result != None:
+   print(result)
+else:
+    print("Product not found!") 
+    
+
+product_id = int(input("enter product id :"))
+for product in products:
+    if product["id"] == product_id:
+        print(product["name"])
 
 
 
