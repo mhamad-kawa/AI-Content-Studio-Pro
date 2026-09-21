@@ -35,14 +35,9 @@ def find_product(product_id):
     for product in products:
         if product["id"] == product_id:
             return product
-product_id = int(input("enter product id :"))
-result = find_product(product_id)        
+result = find_product(2)
 if result != None:
-   print("product:" , result["name"])
-   print("purchase price:" , result["purchase_price"])
-   print("quantity:" , result["quantity"])
-   print("shipping:" , result["shipping"])
-   print("selling price:" , result["selling_price"])
+   print(result)
 else:
     print("Product not found!") 
     
