@@ -43,6 +43,14 @@ if result != None:
    print("quantity:" , result["quantity"])
    print("shipping:" , result["shipping"])
    print("selling price:" , result["selling_price"])
+   new_price = int (input("enter new selling price :"))
+   while new_price <= 0:
+       print ("Invalid selling price!")
+       new_price = int(input("enter new selling price:"))
+   result["selling_price"] = new_price
+   print("Selling price updated:" , result["selling_price"] )
+   print(result)
+
 else:
     print("Product not found!") 
     
