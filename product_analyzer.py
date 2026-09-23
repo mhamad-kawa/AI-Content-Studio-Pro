@@ -53,6 +53,21 @@ if result != None:
 
 else:
     print("Product not found!") 
+
+product_id = int(input("Enter product ID to delete:"))  
+result = find_product(product_id)
+if result != None:
+    products.remove(result)
+    print("Product deleted")
+else:
+    print("Product not found")    
+check = find_product(product_id)
+
+if check == None:
+    print("Product successfully deleted!")
+else:
+    print("Product still exists!")    
+print(result)  
     
 
 product_id = int(input("enter product id :"))
