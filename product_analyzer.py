@@ -29,8 +29,19 @@ product3 = {
     "selling_price": 7
 }
 
-products = [product ,product2 , product3]
 
+products = [product ,product2 , product3 ]
+
+def find_product_by_name(product_name):
+    for product in products:
+        if product["name"]. lower() == product_name .lower():
+            return product
+product_name = input("enter product name : ")
+result = find_product_by_name(product_name)        
+if result != None:
+    print("Product found:", result["name"])
+else:
+     print("Product not found!")    
 def find_product(product_id):
     for product in products:
         if product["id"] == product_id:
@@ -222,11 +233,12 @@ def create_product():
             
 
      product = {
-     "name" : name,
-     "purchase_price" : purchase_price,
-     "quantity" : quantity ,
-     "shipping" : shipping ,
-     "selling_price" : selling_price     
+    "id": 4,
+    "name": name,
+    "purchase_price": purchase_price,
+    "quantity": quantity,
+    "shipping": shipping,
+    "selling_price": selling_price
 }
      return product
 new_product = create_product()
