@@ -30,7 +30,7 @@ product3 = {
 }
 
 
-products = [product ,product2 , product3 ]
+products = [product ,product2 , product3]
 
 def find_product_by_name(product_name):
     for product in products:
@@ -264,3 +264,29 @@ def final_report(results):
     for result in results:
       print(result["name"], "→", result["decision"])
 final_report(results) 
+while True:
+
+ print("===== PRODUCT MANAGER =====")
+ print("1. Search Product")
+ print("2. Add Product")
+ print("3. Update Product")
+ print("4. Delete Product")
+ print("5. Show Report")
+ print("6. Exit")
+ choice = input("Choose an option: ")
+
+ if choice == "1":
+    print("search product")
+ elif choice == "2":
+    print("add product")
+ elif choice == "3":
+    print("update product")  
+
+ elif choice == "4":
+    print("delet product")
+
+ elif choice == "5":
+    print("show report")
+ elif choice == "6":
+    print("exit")
+    break
