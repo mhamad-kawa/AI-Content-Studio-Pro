@@ -276,17 +276,56 @@ while True:
  choice = input("Choose an option: ")
 
  if choice == "1":
-    print("search product")
+    product_name = input("Enter product name: ")
+    result = find_product_by_name(product_name)
+
+    if result != None:
+        print("Product found:", result["name"])
+    else:
+        print("Product not found!")
  elif choice == "2":
-    print("add product")
+    new_product = create_product()
+    products.append(new_product)
+
+    new_result = analyze_product(new_product)
+    results.append(new_result)
+
+    print("Product added successfully!")
  elif choice == "3":
-    print("update product")  
+    product_id = int(input("Enter product ID: "))
+    result = find_product(product_id)
+
+    if result != None:
+        new_price = int(input("Enter new selling price: "))
+
+        while new_price <= 0:
+            print("Invalid selling price!")
+            new_price = int(input("Enter new selling price: "))
+
+        result["selling_price"] = new_price
+        print("Selling price updated:", result["selling_price"])
+
+    else:
+        print("Product not found!")
 
  elif choice == "4":
-    print("delet product")
+    product_id = int(input("Enter product ID to delete: "))
+    result = find_product(product_id)
+
+    if result != None:
+        products.remove(result)
+        print("Product deleted successfully!")
+    else:
+        print("Product not found!")
 
  elif choice == "5":
-    print("show report")
+    results = []
+
+    for product in products:
+        result = analyze_product(product)
+        results.append(result)
+
+    final_report(results)
  elif choice == "6":
     print("exit")
     break
