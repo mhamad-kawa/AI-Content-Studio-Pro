@@ -286,8 +286,11 @@ while True:
     # UPDATE
     elif choice == "3":
 
-        product_id = int(input("Enter product ID: "))
-
+        try:
+          product_id = int(input("Enter product ID: "))
+        except ValueError:
+          print("Please enter a number!")
+        continue
         result = find_product(product_id)
 
         if result != None:
@@ -307,8 +310,12 @@ while True:
 
     # DELETE
     elif choice == "4":
+        try:
 
-        product_id = int(input("Enter product ID to delete: "))
+         product_id = int(input("Enter product ID to delete: "))
+        except ValueError:
+            print("please enter a number!")
+        continue    
 
         result = find_product(product_id)
 
