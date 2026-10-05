@@ -1,4 +1,4 @@
-
+import json
 
 product = {
     "id": 1,
@@ -27,6 +27,37 @@ product3 = {
     "selling_price": 7
 }
 
+product = {
+    "id": 1,
+    "name": "smart_watch",
+    "purchase_price": 20,
+    "quantity": 50,
+    "shipping": 100,
+    "selling_price": 40
+}
+
+product2 = {
+    "id": 2,
+    "name": "Bluetooth Speaker",
+    "purchase_price": 15,
+    "quantity": 30,
+    "shipping": 80,
+    "selling_price": 30
+}
+
+product3 = {
+    "id": 3,
+    "name": "USB-C Cable",
+    "purchase_price": 3,
+    "quantity": 100,
+    "shipping": 50,
+    "selling_price": 7
+}
+
+
+with open("products.json", "r") as file:
+    products = json.load(file)
+
 products = [product, product2, product3]
 
 
@@ -42,6 +73,10 @@ def find_product(product_id):
         if product["id"] == product_id:
             return product
     return None
+
+def save_products():
+    with open("products.json", "w") as file:
+        json.dump(products, file, indent=4)
 
 
 def calculate_decision(profit_margin):
@@ -306,3 +341,4 @@ while True:
 
     else:
         print("Invalid choice!")
+
