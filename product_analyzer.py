@@ -79,6 +79,14 @@ def save_products():
         json.dump(products, file, indent=4)
 
 
+def get_product_id():
+    try:
+        product_id = int(input("Enter product ID: "))
+        return product_id
+    except ValueError:
+        print("Please enter a number!")
+        return None
+
 def calculate_decision(profit_margin):
     if profit_margin >= 40:
         return "scale"
@@ -286,11 +294,10 @@ while True:
     # UPDATE
     elif choice == "3":
 
-        try:
-          product_id = int(input("Enter product ID: "))
-        except ValueError:
-          print("Please enter a number!")
-        continue
+        product_id = get_product_id()
+
+        if product_id == None:
+         continue
         result = find_product(product_id)
 
         if result != None:
@@ -310,13 +317,10 @@ while True:
 
     # DELETE
     elif choice == "4":
-        try:
+        product_id = get_product_id()
 
-         product_id = int(input("Enter product ID to delete: "))
-        except ValueError:
-            print("please enter a number!")
-        continue    
-
+        if product_id == None:
+          continue
         result = find_product(product_id)
 
         if result != None:
