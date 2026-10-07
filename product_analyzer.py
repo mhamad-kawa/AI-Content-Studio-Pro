@@ -27,38 +27,8 @@ product3 = {
     "selling_price": 7
 }
 
-product = {
-    "id": 1,
-    "name": "smart_watch",
-    "purchase_price": 20,
-    "quantity": 50,
-    "shipping": 100,
-    "selling_price": 40
-}
-
-product2 = {
-    "id": 2,
-    "name": "Bluetooth Speaker",
-    "purchase_price": 15,
-    "quantity": 30,
-    "shipping": 80,
-    "selling_price": 30
-}
-
-product3 = {
-    "id": 3,
-    "name": "USB-C Cable",
-    "purchase_price": 3,
-    "quantity": 100,
-    "shipping": 50,
-    "selling_price": 7
-}
-
-
 with open("products.json", "r") as file:
     products = json.load(file)
-
-products = [product, product2, product3]
 
 
 def find_product_by_name(product_name):
@@ -74,6 +44,7 @@ def find_product(product_id):
             return product
     return None
 
+
 def save_products():
     with open("products.json", "w") as file:
         json.dump(products, file, indent=4)
@@ -86,6 +57,7 @@ def get_product_id():
     except ValueError:
         print("Please enter a number!")
         return None
+
 
 def calculate_decision(profit_margin):
     if profit_margin >= 40:
@@ -166,6 +138,7 @@ def create_product():
 
     name = input("Product name: ")
 
+    # Purchase Price Validation
     while True:
         try:
             purchase_price = int(input("Purchase price: "))
@@ -179,6 +152,7 @@ def create_product():
         except ValueError:
             print("Please enter a number!")
 
+    # Quantity Validation
     while True:
         try:
             quantity = int(input("Quantity: "))
@@ -192,6 +166,7 @@ def create_product():
         except ValueError:
             print("Please enter a number!")
 
+    # Shipping Validation
     while True:
         try:
             shipping = int(input("Shipping: "))
@@ -205,6 +180,7 @@ def create_product():
         except ValueError:
             print("Please enter a number!")
 
+    # Selling Price Validation
     while True:
         try:
             selling_price = int(input("Selling price: "))
@@ -289,6 +265,8 @@ while True:
 
         products.append(new_product)
 
+        save_products()
+
         print("Product added successfully!")
 
     # UPDATE
@@ -297,18 +275,28 @@ while True:
         product_id = get_product_id()
 
         if product_id == None:
-         continue
+            continue
+
         result = find_product(product_id)
 
         if result != None:
 
-            new_price = int(input("Enter new selling price: "))
+            while True:
+                try:
+                    new_price = int(input("Enter new selling price: "))
 
-            while new_price <= 0:
-                print("Invalid selling price!")
-                new_price = int(input("Enter new selling price: "))
+                    if new_price <= 0:
+                        print("Invalid selling price!")
+                        continue
+
+                    break
+
+                except ValueError:
+                    print("Please enter a number!")
 
             result["selling_price"] = new_price
+
+            save_products()
 
             print("Selling price updated:", result["selling_price"])
 
@@ -317,15 +305,19 @@ while True:
 
     # DELETE
     elif choice == "4":
+
         product_id = get_product_id()
 
         if product_id == None:
-          continue
+            continue
+
         result = find_product(product_id)
 
         if result != None:
 
             products.remove(result)
+
+            save_products()
 
             print("Product deleted successfully!")
 
@@ -352,4 +344,3 @@ while True:
 
     else:
         print("Invalid choice!")
-
