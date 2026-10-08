@@ -33,10 +33,10 @@ with open("products.json", "r") as file:
 
 def find_product_by_name(product_name):
     for product in products:
-        if product["name"].lower() == product_name.lower():
+        if product_name.lower() in product["name"].lower():
             return product
-    return None
 
+    return None
 
 def find_product(product_id):
     for product in products:
@@ -133,10 +133,33 @@ def calculate_worst_profit_and_product(results):
 
     return worst_product, worst_profit
 
+def generate_product_id():
+    max_id = 0
+
+    for product in products:
+        if product["id"] > max_id:
+            max_id = product["id"]
+
+    return max_id + 1
 
 def create_product():
 
-    name = input("Product name: ")
+    while True:
+
+        name = input("Product name: ")
+
+        if name.strip() == "":
+            print("Product name cannot be empty!")
+            continue
+
+        existing_product = find_product_by_name(name)
+
+        if existing_product != None:
+            print("Product already exists!")
+            continue
+
+        break
+   
 
     # Purchase Price Validation
     while True:
@@ -195,13 +218,15 @@ def create_product():
             print("Please enter a number!")
 
     product = {
-        "id": len(products) + 1,
+        "id": generate_product_id(),
         "name": name,
         "purchase_price": purchase_price,
         "quantity": quantity,
         "shipping": shipping,
         "selling_price": selling_price
     }
+    
+
 
     return product
 

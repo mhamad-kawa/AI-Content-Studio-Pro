@@ -8,14 +8,6 @@
         "selling_price": 40
     },
     {
-        "id": 2,
-        "name": "Bluetooth Speaker",
-        "purchase_price": 15,
-        "quantity": 30,
-        "shipping": 80,
-        "selling_price": 30
-    },
-    {
         "id": 3,
         "name": "USB-C Cable",
         "purchase_price": 3,
@@ -30,5 +22,53 @@
         "quantity": 10,
         "shipping": 10,
         "selling_price": 100
+    },
+    {
+        "id": 5,
+        "name": "\u0627\u062d\u0645\u062f\u062f",
+        "purchase_price": 12,
+        "quantity": 12,
+        "shipping": 12,
+        "selling_price": 12
+    },
+    {
+        "id": 6,
+        "name": "\u0645\u062d\u0645\u062f",
+        "purchase_price": 14,
+        "quantity": 15,
+        "shipping": 65,
+        "selling_price": 258
+    },
+    {
+        "id": 7,
+        "name": "\u0641\u0631\u064a\u062f\u0648\u0646",
+        "purchase_price": 25,
+        "quantity": 58,
+        "shipping": 89,
+        "selling_price": 98
+    },
+    {
+        "id": 8,
+        "name": "",
+        "purchase_price": 15,
+        "quantity": 54,
+        "shipping": 25,
+        "selling_price": 55
+    },
+    {
+        "id": 9,
+        "name": "Bluetooth",
+        "purchase_price": 125,
+        "quantity": 125,
+        "shipping": 124,
+        "selling_price": 47
+    },
+    {
+        "id": 10,
+        "name": "\u0639\u0644\u064a",
+        "purchase_price": 12,
+        "quantity": 52,
+        "shipping": 85,
+        "selling_price": 75
     }
 ]
