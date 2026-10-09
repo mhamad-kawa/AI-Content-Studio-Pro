@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "Smart Watch Pro",
+        "name": "Bluetooth Speaker",
         "purchase_price": 21,
         "quantity": 1,
         "shipping": 150,
@@ -9,7 +9,7 @@
     },
     {
         "id": 3,
-        "name": "USB-C Cable",
+        "name": "\u0624\u0631",
         "purchase_price": 3,
         "quantity": 100,
         "shipping": 50,

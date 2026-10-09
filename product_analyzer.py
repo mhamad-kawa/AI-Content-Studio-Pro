@@ -31,12 +31,22 @@ with open("products.json", "r") as file:
     products = json.load(file)
 
 
-def find_product_by_name(product_name):
+def find_products_by_name(product_name):
+    matching_products = []
+
     for product in products:
         if product_name.lower() in product["name"].lower():
-            return product
+            matching_products.append(product)
 
-    return None
+    return matching_products
+
+def product_name_exists(name, exclude_id=None):
+    for product in products:
+        if product["name"].strip().lower() == name.strip().lower():
+            if product["id"] != exclude_id:
+                return True
+
+    return False
 
 def find_product(product_id):
     for product in products:
@@ -152,12 +162,10 @@ def create_product():
             print("Product name cannot be empty!")
             continue
 
-        existing_product = find_product_by_name(name)
-
-        if existing_product != None:
-            print("Product already exists!")
-            continue
-
+        if product_name_exists(name):
+         print("Product already exists!")
+         continue
+ 
         break
    
 
@@ -271,15 +279,20 @@ while True:
 
     choice = input("Choose an option: ")
 
-    # SEARCH
+        # SEARCH
     if choice == "1":
 
         product_name = input("Enter product name: ")
 
-        result = find_product_by_name(product_name)
+        results = find_products_by_name(product_name)
 
-        if result != None:
-            print("Product found:", result["name"])
+        if results:
+            for product in results:
+                print(
+                    "ID:", product["id"],
+                    "| Name:", product["name"],
+                    "| Selling Price:", product["selling_price"]
+                )
         else:
             print("Product not found!")
 
@@ -328,9 +341,7 @@ while True:
                         print("Product name cannot be empty!")
                         continue
 
-                    existing_product = find_product_by_name(new_name)
-
-                    if existing_product is not None and existing_product["id"] != result["id"]:
+                    if product_name_exists(new_name, result["id"]):
                         print("Product name already exists!")
                         continue
 
@@ -340,7 +351,6 @@ while True:
                 save_products()
 
                 print("Product name updated successfully:", result["name"])
-
             elif update_choice == "2":
 
                 while True:
