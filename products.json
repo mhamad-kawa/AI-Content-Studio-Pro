@@ -1,11 +1,11 @@
 [
     {
         "id": 1,
-        "name": "smart_watch",
-        "purchase_price": 20,
-        "quantity": 50,
-        "shipping": 100,
-        "selling_price": 40
+        "name": "Smart Watch Pro",
+        "purchase_price": 21,
+        "quantity": 1,
+        "shipping": 150,
+        "selling_price": 15
     },
     {
         "id": 3,

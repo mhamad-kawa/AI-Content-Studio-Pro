@@ -294,39 +294,145 @@ while True:
 
         print("Product added successfully!")
 
-    # UPDATE
+        # UPDATE
     elif choice == "3":
 
         product_id = get_product_id()
 
-        if product_id == None:
+        if product_id is None:
             continue
 
         result = find_product(product_id)
 
-        if result != None:
+        if result is None:
+            print("Product not found!")
+            continue
 
-            while True:
-                try:
-                    new_price = int(input("Enter new selling price: "))
+        while True:
+            print("\nWhat do you want to update?")
+            print("1. Product Name")
+            print("2. Purchase Price")
+            print("3. Quantity")
+            print("4. Shipping")
+            print("5. Selling Price")
+            print("6. Back to Menu")
 
-                    if new_price <= 0:
-                        print("Invalid selling price!")
+            update_choice = input("Choose an option: ")
+
+            if update_choice == "1":
+
+                while True:
+                    new_name = input("Enter new product name: ").strip()
+
+                    if new_name == "":
+                        print("Product name cannot be empty!")
+                        continue
+
+                    existing_product = find_product_by_name(new_name)
+
+                    if existing_product is not None and existing_product["id"] != result["id"]:
+                        print("Product name already exists!")
                         continue
 
                     break
 
-                except ValueError:
-                    print("Please enter a number!")
+                result["name"] = new_name
+                save_products()
 
-            result["selling_price"] = new_price
+                print("Product name updated successfully:", result["name"])
 
-            save_products()
+            elif update_choice == "2":
 
-            print("Selling price updated:", result["selling_price"])
+                while True:
+                    try:
+                        new_purchase_price = int(
+                            input("Enter new purchase price: ")
+                        )
 
-        else:
-            print("Product not found!")
+                        if new_purchase_price <= 0:
+                            print("Purchase price must be greater than zero!")
+                            continue
+
+                        break
+
+                    except ValueError:
+                        print("Please enter a number!")
+
+                result["purchase_price"] = new_purchase_price
+                save_products()
+
+                print(
+                    "Purchase price updated successfully:",
+                    result["purchase_price"]
+                )
+
+            elif update_choice == "3":
+
+                while True:
+                    try:
+                        new_quantity = int(input("Enter new quantity: "))
+
+                        if new_quantity <= 0:
+                            print("Quantity must be greater than zero!")
+                            continue
+
+                        break
+
+                    except ValueError:
+                        print("Please enter a number!")
+
+                result["quantity"] = new_quantity
+                save_products()
+
+                print("Quantity updated successfully:", result["quantity"])
+            elif update_choice == "4":
+
+                while True:
+                    try:
+                        new_shipping = int(input("Enter new shipping cost: "))
+
+                        if new_shipping < 0:
+                            print("Shipping cannot be negative!")
+                            continue
+
+                        break
+
+                    except ValueError:
+                        print("Please enter a number!")
+
+                result["shipping"] = new_shipping
+                save_products()
+
+                print("Shipping updated successfully:", result["shipping"])
+
+            elif update_choice == "5":
+
+                while True:
+                    try:
+                        new_selling_price = int(
+                            input("Enter new selling price: ")
+                        )
+
+                        if new_selling_price <= 0:
+                            print("Selling price must be greater than zero!")
+                            continue
+
+                        break
+
+                    except ValueError:
+                        print("Please enter a number!")
+
+                result["selling_price"] = new_selling_price
+                save_products()
+
+                print(
+                    "Selling price updated successfully:",
+                    result["selling_price"]
+                )
+
+            elif update_choice == "6":
+                print("Back to Menu")
+                break
 
     # DELETE
     elif choice == "4":
