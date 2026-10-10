@@ -48,14 +48,6 @@
         "selling_price": 98
     },
     {
-        "id": 8,
-        "name": "",
-        "purchase_price": 15,
-        "quantity": 54,
-        "shipping": 25,
-        "selling_price": 55
-    },
-    {
         "id": 9,
         "name": "Bluetooth",
         "purchase_price": 125,
