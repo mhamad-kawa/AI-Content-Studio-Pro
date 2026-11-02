@@ -18,6 +18,18 @@ content_type = st.selectbox(
     ["Business Tips", "Instagram Caption", "Marketing Post", "Product Description"]
 )
 
+content_prompts = {
+    "Business Tips": "Write exactly 3 practical business tips for beginners.",
+    "Instagram Caption": "Write a short, engaging Instagram caption with a strong hook and relevant emojis.",
+    "Marketing Post": "Write a persuasive marketing post with a strong hook and a clear call to action.",
+    "Product Description": "Write a professional product description focusing on features and customer benefits."
+}
+
+language = st.selectbox(
+    "choose content language ",
+    ["English", "Arabic", "Kurdish (Sorani)"]
+)
+
 if st.button("Generate Content"):
     if topic.strip():
         with st.spinner("AI is generating content..."):
@@ -28,11 +40,12 @@ if st.button("Generate Content"):
                         "role": "user",
                         "content": f"""
                                 You are a professional business content creator.
-                                Create content of this type: {content_type}
+                                Instructions: {content_prompts[content_type]}
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
-                                Use clear and simple English and arabic.
+                                Write the entire content in {language}.
+                                Do not use any other language.
                                 """
                     }
                 ],
