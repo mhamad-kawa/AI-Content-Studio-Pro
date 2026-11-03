@@ -70,6 +70,7 @@ if st.button("Generate Content"):
         st.warning("Please enter a topic.")
 
 st.subheader("Content History")
+st.button("Clear History")
 
 
 
