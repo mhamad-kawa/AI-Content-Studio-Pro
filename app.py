@@ -56,9 +56,8 @@ if st.button("Generate Content"):
 
         generated_content = response.choices[0].message.content
         st.session_state.content_history.append(generated_content)
-
         st.subheader("Generated Content")
-        st.write(generated_content)
+        st.code(generated_content, language=None)
         st.download_button(
             label = "Download Content",
             data= generated_content , 
@@ -70,7 +69,8 @@ if st.button("Generate Content"):
         st.warning("Please enter a topic.")
 
 st.subheader("Content History")
-st.button("Clear History")
+if st.button("Clear History"):
+    st.session_state.content_history = []
 
 
 
