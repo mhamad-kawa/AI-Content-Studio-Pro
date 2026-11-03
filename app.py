@@ -11,6 +11,8 @@ client = Groq(
 st.title("AI Content Generator Pro")
 
 st.write("Welcome! Create business content with AI.")
+if "content_history" not in st.session_state:
+    st.session_state.content_history = []
 
 topic = st.text_input("What topic do you want to write about?")
 content_type = st.selectbox(
@@ -53,6 +55,7 @@ if st.button("Generate Content"):
             )
 
         generated_content = response.choices[0].message.content
+        st.session_state.content_history.append(generated_content)
 
         st.subheader("Generated Content")
         st.write(generated_content)
@@ -65,3 +68,11 @@ if st.button("Generate Content"):
 
     else:
         st.warning("Please enter a topic.")
+
+st.subheader("Content History")
+
+
+
+for content in st.session_state.content_history:
+    st.write(content)
+    st.divider()
