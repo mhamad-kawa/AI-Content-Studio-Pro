@@ -52,8 +52,16 @@ if st.button("Generate Content"):
                 temperature=0.7
             )
 
+        generated_content = response.choices[0].message.content
+
         st.subheader("Generated Content")
-        st.write(response.choices[0].message.content)
+        st.write(generated_content)
+        st.download_button(
+            label = "Download Content",
+            data= generated_content , 
+            file_name= "ai_content.txt" ,
+            mime= "text/plain"
+        )
 
     else:
         st.warning("Please enter a topic.")
