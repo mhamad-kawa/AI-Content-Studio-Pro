@@ -32,6 +32,11 @@ language = st.sidebar.selectbox(
     ["English", "Arabic", "Kurdish (Sorani)"]
 )
 
+tone = st.sidebar.selectbox(
+    "Choose writing tone:",
+    ["Professional", "Friendly", "Persuasive", "Motivational"]
+)
+
 if st.button("Generate Content"):
     if topic.strip():
         with st.spinner("AI is generating content..."):
@@ -43,6 +48,7 @@ if st.button("Generate Content"):
                         "content": f"""
                                 You are a professional business content creator.
                                 Instructions: {content_prompts[content_type]}
+                                Writing Tone: {tone}
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
