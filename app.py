@@ -15,7 +15,7 @@ if "content_history" not in st.session_state:
     st.session_state.content_history = []
 
 topic = st.text_input("What topic do you want to write about?")
-content_type = st.selectbox(
+content_type = st.sidebar.selectbox(
     "Choose content type:",
     ["Business Tips", "Instagram Caption", "Marketing Post", "Product Description"]
 )
@@ -27,7 +27,7 @@ content_prompts = {
     "Product Description": "Write a professional product description focusing on features and customer benefits."
 }
 
-language = st.selectbox(
+language = st.sidebar.selectbox(
     "choose content language ",
     ["English", "Arabic", "Kurdish (Sorani)"]
 )
