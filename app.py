@@ -50,6 +50,12 @@ audience = st.sidebar.selectbox(
     ["Entrepreneurs", "Students", "Business Owners", "Beginners"]
 )
 
+
+brand_voice = st.sidebar.selectbox(
+    "Choose Brand Voice:",
+    ["Friendly", "Professional", "Casual", "Luxury"]
+)
+
 if st.button("Generate Content"):
     if topic.strip():
         with st.spinner("AI is generating content..."):
@@ -63,6 +69,7 @@ if st.button("Generate Content"):
                                 Instructions: {content_prompts[content_type]}
                                 Writing Tone: {tone}
                                 Target Audience: {audience}
+                                Brand Voice: {brand_voice}
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
