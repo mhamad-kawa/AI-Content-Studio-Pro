@@ -37,6 +37,14 @@ tone = st.sidebar.selectbox(
     ["Professional", "Friendly", "Persuasive", "Motivational"]
 )
 
+creativity = st.sidebar.slider(
+    "Creativity Level:",
+    min_value=0.2,
+    max_value=1.0,
+    value=0.7,
+    step=0.1
+)
+
 if st.button("Generate Content"):
     if topic.strip():
         with st.spinner("AI is generating content..."):
@@ -57,7 +65,7 @@ if st.button("Generate Content"):
                                 """
                     }
                 ],
-                temperature=0.7
+                temperature=creativity
             )
 
         generated_content = response.choices[0].message.content
