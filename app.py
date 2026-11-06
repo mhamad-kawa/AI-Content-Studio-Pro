@@ -20,6 +20,12 @@ content_type = st.sidebar.selectbox(
     ["Business Tips", "Instagram Caption", "Marketing Post", "Product Description"]
 )
 
+brand_description = st.text_area(
+    "Describe your brand:",
+    placeholder="Tell us about your company, products, services, and customers..."
+)
+
+
 content_prompts = {
     "Business Tips": "Write exactly 3 practical business tips for beginners.",
     "Instagram Caption": "Write a short, engaging Instagram caption with a strong hook and relevant emojis.",
@@ -70,6 +76,7 @@ if st.button("Generate Content"):
                                 Writing Tone: {tone}
                                 Target Audience: {audience}
                                 Brand Voice: {brand_voice}
+                                Brand Description: {brand_description}
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
