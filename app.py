@@ -45,6 +45,11 @@ creativity = st.sidebar.slider(
     step=0.1
 )
 
+audience = st.sidebar.selectbox(
+    "Choose target audience:",
+    ["Entrepreneurs", "Students", "Business Owners", "Beginners"]
+)
+
 if st.button("Generate Content"):
     if topic.strip():
         with st.spinner("AI is generating content..."):
@@ -57,6 +62,7 @@ if st.button("Generate Content"):
                                 You are a professional business content creator.
                                 Instructions: {content_prompts[content_type]}
                                 Writing Tone: {tone}
+                                Target Audience: {audience}
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
