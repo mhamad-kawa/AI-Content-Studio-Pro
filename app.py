@@ -15,9 +15,17 @@ if "content_history" not in st.session_state:
     st.session_state.content_history = []
 
 topic = st.text_input("What topic do you want to write about?")
+
+
 content_type = st.sidebar.selectbox(
     "Choose content type:",
     ["Business Tips", "Instagram Caption", "Marketing Post", "Product Description"]
+)
+
+
+content_length = st.sidebar.selectbox(
+    "Choose Content Length:",
+    ["Short", "Medium", "Long"]
 )
 
 
@@ -80,6 +88,7 @@ if st.button("Generate Content"):
                                 You are a professional business content creator.
                                 Instructions: {content_prompts[content_type]}
                                 Writing Tone: {tone}
+                                Content Length: {content_length}
                                 Target Audience: {audience}
                                 Brand Voice: {brand_voice}
                                 Brand Name: {brand_name}
