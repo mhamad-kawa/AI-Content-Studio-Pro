@@ -80,6 +80,11 @@ if st.button("Generate Content"):
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
+                                Do not invent facts, prices, discounts, warranties, return policies, product features, or customer testimonials.
+                                Use the Brand Description as the only source of factual information about the brand and its products.
+                                Use the Topic only to understand the content idea, not as a source of factual claims.
+                                Do not include any claims from the Topic unless they are confirmed in the Brand Description.
+                                If a fact is missing from the Brand Description, do not mention it.
                                 Write the entire content in {language}.
                                 Do not use any other language.
                                 """
