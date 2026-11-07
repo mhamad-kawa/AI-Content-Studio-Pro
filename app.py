@@ -20,6 +20,12 @@ content_type = st.sidebar.selectbox(
     ["Business Tips", "Instagram Caption", "Marketing Post", "Product Description"]
 )
 
+
+brand_name = st.text_input(
+    "Brand Name:",
+    placeholder="Enter your company name..."
+)
+
 brand_description = st.text_area(
     "Describe your brand:",
     placeholder="Tell us about your company, products, services, and customers..."
@@ -76,6 +82,7 @@ if st.button("Generate Content"):
                                 Writing Tone: {tone}
                                 Target Audience: {audience}
                                 Brand Voice: {brand_voice}
+                                Brand Name: {brand_name}
                                 Brand Description: {brand_description}
                                 Topic: {topic}
 
