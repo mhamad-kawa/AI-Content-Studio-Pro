@@ -40,6 +40,11 @@ brand_description = st.text_area(
 )
 
 
+custom_instructions = st.text_area(
+    "Custom Instructions:",
+    placeholder="Tell AI how you want your content to be written..."
+)
+
 content_prompts = {
     "Business Tips": "Write exactly 3 practical business tips for beginners.",
     "Instagram Caption": "Write a short, engaging Instagram caption with a strong hook and relevant emojis.",
@@ -93,6 +98,7 @@ if st.button("Generate Content"):
                                 Brand Voice: {brand_voice}
                                 Brand Name: {brand_name}
                                 Brand Description: {brand_description}
+                                Custom Instructions: {custom_instructions}
                                 Topic: {topic}
 
                                 Write useful, engaging, and practical content.
