@@ -223,14 +223,15 @@ for content in st.session_state.content_history:
 
 st.subheader("⭐ Favorite Content")
 
-if st.button("Clear Favorites"):
-    st.session_state.favorites = []
-
 if st.session_state.favorites:
 
     for index, content in enumerate(st.session_state.favorites):
 
         st.write(content)
+
+        if st.button("🗑️ Remove", key=f"remove_{index}"):
+            st.session_state.favorites.remove(content)
+            st.rerun()
 
         st.divider()
 
