@@ -137,9 +137,39 @@ def analyze_product(product):
 st.title("🤖 AI Content Generator Pro")
 st.write("Create business content with AI and manage your product profitability.")
 
-content_tab, product_tab = st.tabs(
-    ["✍️ AI Content Generator", "📦 China Store Product Manager"]
+dashboard_tab, content_tab, product_tab = st.tabs(
+    ["📊 Dashboard", "✍️ AI Content Generator", "📦 China Store Product Manager"]
 )
+
+with dashboard_tab:
+
+    st.title("📊 Business Dashboard")
+
+    st.write("Welcome to your business overview!")
+    results = [analyze_product(product) for product in products]
+
+    total_products = len(products)
+    total_revenue = sum(item["revenue"] for item in results)
+    total_cost = sum(item["total_cost"] for item in results)
+    total_profit = sum(item["profit"] for item in results)
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    col1.metric("Total Products", total_products)
+    col2.metric("Total Revenue", f"${total_revenue:,.2f}")
+    col3.metric("Total Costs", f"${total_cost:,.2f}")
+    col4.metric("Total Profit", f"${total_profit:,.2f}")
+    st.subheader("📈 Profit by Product")
+
+    if results:
+        chart_data = {
+            item["name"]: item["profit"]
+            for item in results
+        }
+
+        st.bar_chart(chart_data)
+    else:
+        st.info("No products available. Add your first product!")
 
 with content_tab:
 
