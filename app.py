@@ -146,6 +146,7 @@ with dashboard_tab:
     st.title("📊 Business Dashboard")
 
     st.write("Welcome to your business overview!")
+
     results = [analyze_product(product) for product in products]
 
     total_products = len(products)
@@ -159,15 +160,78 @@ with dashboard_tab:
     col2.metric("Total Revenue", f"${total_revenue:,.2f}")
     col3.metric("Total Costs", f"${total_cost:,.2f}")
     col4.metric("Total Profit", f"${total_profit:,.2f}")
+
+    # Best Product Analysis
+    if results:
+
+        best_product = max(
+            results,
+            key=lambda item: item["profit"]
+        )
+
+        st.success(
+            f"🏆 Best Product: {best_product['name']} "
+            f"| Profit: ${best_product['profit']:,.2f}"
+        )
+
+    # Products That Need Attention
+    st.subheader("⚠️ Products Need Attention")
+
+    low_margin_products = [
+        item for item in results
+        if item["status"] == "Low"
+    ]
+
+    if low_margin_products:
+
+        for item in low_margin_products:
+
+            st.warning(
+                f"⚠️ {item['name']} "
+                f"| Profit Margin: {item['profit_margin']:.2f}%"
+            )
+
+    else:
+        st.success("All products have acceptable profit margins!")
+
+    # Smart Business Recommendations
+    st.subheader("💡 Smart Business Recommendations")
+
+    if low_margin_products:
+
+        for item in low_margin_products:
+
+            st.info(
+                f"💡 Recommendation for {item['name']}: "
+                "Review purchase price, shipping costs, "
+                "and selling price to improve profitability."
+            )
+
+    elif results:
+
+        st.success(
+            "Your products have acceptable profit margins. "
+            "Keep monitoring costs and sales performance."
+        )
+
+    else:
+
+        st.info(
+            "Add your first product to receive smart business recommendations."
+        )
+
+    # Profit Chart
     st.subheader("📈 Profit by Product")
 
     if results:
+
         chart_data = {
             item["name"]: item["profit"]
             for item in results
         }
 
         st.bar_chart(chart_data)
+
     else:
         st.info("No products available. Add your first product!")
 
